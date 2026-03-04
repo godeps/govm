@@ -1,0 +1,5 @@
+name=py312-alpine
+source=oci-layout from docker://python:3.12-alpine
+archive=rootfs.tar.gz
+sha256=a08d56f7a7496290c6b65893672823d255f5fed59dbaffc88aa3c0b025bfba7a
+size_bytes=18071914
