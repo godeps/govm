@@ -29,6 +29,7 @@ if [[ "$STUB_MODE" == "1" ]]; then
 fi
 
 if [[ "$PROFILE" == "release" ]]; then
+  export RUSTFLAGS="${RUSTFLAGS:-} -C strip=symbols"
   BOXLITE_DEPS_STUB="$STUB_MODE" cargo build --release
   echo "built: $BRIDGE_DIR/target/release/libgovm_boxlite_bridge.a"
 else
