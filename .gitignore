@@ -37,3 +37,6 @@ rust-bridge/target/
 # Local native stub libraries (generated)
 rust-bridge/.stub-native-libs/*.o
 rust-bridge/.stub-native-libs/*.a
+
+# Local git worktrees
+.worktrees/
