@@ -56,6 +56,9 @@ func main() {
 			"DEMO_MODE": "all-api",
 		},
 		WorkingDir: "/",
+		Mounts: []client.Mount{
+			{HostPath: os.TempDir(), GuestPath: "/host-tmp", ReadOnly: true},
+		},
 		Network: &client.NetworkConfig{
 			Enabled: true,
 			Mode:    client.NetworkNAT,

@@ -16,10 +16,17 @@ type BoxOptions struct {
 	MemoryMB            int               `json:"memory_mb,omitempty"`
 	Env                 map[string]string `json:"env,omitempty"`
 	WorkingDir          string            `json:"working_dir,omitempty"`
+	Mounts              []Mount           `json:"mounts,omitempty"`
 	NetworkMode         string            `json:"network_mode,omitempty"`
 	NetworkPolicyMode   string            `json:"network_policy_mode,omitempty"`
 	PortForwards        []PortForward     `json:"port_forwards,omitempty"`
 	MacOSNetworkEnabled bool              `json:"macos_network_enabled,omitempty"`
+}
+
+type Mount struct {
+	HostPath  string `json:"host_path,omitempty"`
+	GuestPath string `json:"guest_path,omitempty"`
+	ReadOnly  bool   `json:"read_only,omitempty"`
 }
 
 type PortForward struct {

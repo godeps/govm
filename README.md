@@ -72,6 +72,28 @@ res, _ := box.Exec("echo", &client.ExecOptions{Args: []string{"hello"}})
 fmt.Println(res.ExitCode, res.Stdout)
 ```
 
+## Shared Directories
+
+`govm` exposes host directory mounts through `pkg/client`:
+
+- `Mount.HostPath`: directory on the host
+- `Mount.GuestPath`: absolute path inside the guest
+- `Mount.ReadOnly`: whether the guest mount is read-only
+
+Example:
+
+```go
+box, err := rt.CreateBox(context.Background(), "mount-demo", client.BoxOptions{
+	OfflineImage: "py312-alpine",
+	Mounts: []client.Mount{
+		{HostPath: "./workspace", GuestPath: "/workspace", ReadOnly: false},
+		{HostPath: "./input", GuestPath: "/input", ReadOnly: true},
+	},
+})
+if err != nil { panic(err) }
+_ = box
+```
+
 ## Network API
 
 `govm` exposes network controls in `pkg/client`:

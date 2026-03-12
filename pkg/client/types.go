@@ -18,6 +18,7 @@ type BoxOptions struct {
 	MemoryMB     int               `json:"memory_mb,omitempty"`
 	Env          map[string]string `json:"env,omitempty"`
 	WorkingDir   string            `json:"working_dir,omitempty"`
+	Mounts       []Mount           `json:"mounts,omitempty"`
 	Network      *NetworkConfig    `json:"network,omitempty"`
 }
 

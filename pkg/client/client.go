@@ -111,11 +111,15 @@ func (r *Runtime) CreateBox(ctx context.Context, name string, opts BoxOptions) (
 	if err := ValidateNetworkConfig(effectiveNetwork); err != nil {
 		return nil, err
 	}
+	if err := ValidateMounts(opts.Mounts); err != nil {
+		return nil, err
+	}
 
 	networkMode := ""
 	networkPolicyMode := ""
 	macosNetworkEnabled := true
 	var ports []binding.PortForward
+	var mounts []binding.Mount
 	if effectiveNetwork != nil {
 		networkMode = string(effectiveNetwork.Mode)
 		if effectiveNetwork.Policy != nil {
@@ -134,6 +138,13 @@ func (r *Runtime) CreateBox(ctx context.Context, name string, opts BoxOptions) (
 			})
 		}
 	}
+	for _, mount := range opts.Mounts {
+		mounts = append(mounts, binding.Mount{
+			HostPath:  mount.HostPath,
+			GuestPath: mount.GuestPath,
+			ReadOnly:  mount.ReadOnly,
+		})
+	}
 
 	id, err := r.runtime.CreateBox(name, binding.BoxOptions{
 		Image:               opts.Image,
@@ -142,6 +153,7 @@ func (r *Runtime) CreateBox(ctx context.Context, name string, opts BoxOptions) (
 		MemoryMB:            opts.MemoryMB,
 		Env:                 opts.Env,
 		WorkingDir:          opts.WorkingDir,
+		Mounts:              mounts,
 		NetworkMode:         networkMode,
 		NetworkPolicyMode:   networkPolicyMode,
 		PortForwards:        ports,

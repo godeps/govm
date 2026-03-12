@@ -128,6 +128,13 @@ pub unsafe extern "C" fn govm_create_box(
     }
 
     #[derive(serde::Deserialize)]
+    struct GovmMount {
+        host_path: Option<String>,
+        guest_path: Option<String>,
+        read_only: Option<bool>,
+    }
+
+    #[derive(serde::Deserialize)]
     struct GovmBoxOptionsJson {
         image: Option<String>,
         local_bundle_path: Option<String>,
@@ -136,6 +143,7 @@ pub unsafe extern "C" fn govm_create_box(
         memory_mb: Option<u32>,
         env: Option<HashMap<String, String>>,
         working_dir: Option<String>,
+        mounts: Option<Vec<GovmMount>>,
         network_mode: Option<String>,
         #[allow(dead_code)]
         network_policy_mode: Option<String>,
@@ -196,6 +204,30 @@ pub unsafe extern "C" fn govm_create_box(
 
     if let Some(env) = govm_opts.env {
         box_options.env = env.into_iter().collect();
+    }
+
+    if let Some(mounts) = govm_opts.mounts {
+        for (idx, mount) in mounts.into_iter().enumerate() {
+            let host_path = match mount.host_path {
+                Some(path) if !path.trim().is_empty() => path,
+                _ => {
+                    set_error(out_err, &format!("mounts[{idx}] missing host_path"));
+                    return ptr::null_mut();
+                }
+            };
+            let guest_path = match mount.guest_path {
+                Some(path) if !path.trim().is_empty() => path,
+                _ => {
+                    set_error(out_err, &format!("mounts[{idx}] missing guest_path"));
+                    return ptr::null_mut();
+                }
+            };
+            box_options.volumes.push(boxlite::runtime::options::VolumeSpec {
+                host_path,
+                guest_path,
+                read_only: mount.read_only.unwrap_or(false),
+            });
+        }
     }
 
     let network_mode = govm_opts
