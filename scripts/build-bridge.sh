@@ -26,14 +26,27 @@ fi
 base_rustflags="${RUSTFLAGS:-}"
 if [[ "$STUB_MODE" == "1" ]]; then
   export RUSTFLAGS="${base_rustflags} -Lnative=$STUB_LIB_DIR"
+else
+  export RUSTFLAGS="${base_rustflags} -Lnative=$ROOT_DIR/internal/native/linux_amd64"
 fi
+
+strip_archive() {
+  if ! command -v strip >/dev/null; then
+    return
+  fi
+  if [[ -f "$1" ]]; then
+    strip --strip-unneeded "$1" 2>/dev/null || true
+  fi
+}
 
 if [[ "$PROFILE" == "release" ]]; then
   export RUSTFLAGS="${RUSTFLAGS:-} -C strip=symbols"
   BOXLITE_DEPS_STUB="$STUB_MODE" cargo build --release
   echo "built: $BRIDGE_DIR/target/release/libgovm_boxlite_bridge.a"
+  strip_archive "$BRIDGE_DIR/target/release/libgovm_boxlite_bridge.a"
 else
   BOXLITE_DEPS_STUB="$STUB_MODE" cargo build
   echo "built: $BRIDGE_DIR/target/debug/libgovm_boxlite_bridge.a"
+  strip_archive "$BRIDGE_DIR/target/debug/libgovm_boxlite_bridge.a"
 fi
 popd >/dev/null

@@ -72,6 +72,7 @@ bridge-install-local-release: PROFILE := release
 bridge-install-local-release: bridge
 	@mkdir -p "$(CURRENT_NATIVE_DIR)"
 	cp "$(BRIDGE_BUILD_FILE_RELEASE)" "$(CURRENT_BRIDGE_FILE)"
+	if command -v strip >/dev/null; then strip --strip-unneeded "$(CURRENT_BRIDGE_FILE)" >/dev/null 2>&1 || true; fi
 	@echo "installed $(CURRENT_BRIDGE_FILE)"
 
 bridge-install-local-debug: PROFILE := debug
