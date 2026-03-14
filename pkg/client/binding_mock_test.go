@@ -32,6 +32,23 @@ func (m *mockBoxProvider) Exec(command string, opts binding.ExecOptions) (bindin
 	}
 	return m.execResult, nil
 }
+func (m *mockBoxProvider) ExecStream(command string, opts binding.ExecOptions, cb binding.ExecCallbacks) (binding.ExecResult, error) {
+	res, err := m.Exec(command, opts)
+	if err != nil {
+		return binding.ExecResult{}, err
+	}
+	for _, line := range res.Stdout {
+		if cb.OnStdout != nil {
+			cb.OnStdout(line)
+		}
+	}
+	for _, line := range res.Stderr {
+		if cb.OnStderr != nil {
+			cb.OnStderr(line)
+		}
+	}
+	return res, nil
+}
 func (m *mockBoxProvider) Free() {}
 
 type mockRuntimeProvider struct {

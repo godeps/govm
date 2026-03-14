@@ -45,6 +45,30 @@ func (b *Box) Exec(command string, opts *ExecOptions) (*ExecResult, error) {
 	return &out, nil
 }
 
+func (b *Box) ExecStream(command string, opts *ExecOptions, cb ExecStreamCallbacks) (*ExecResult, error) {
+	bindOpts := binding.ExecOptions{}
+	if opts != nil {
+		bindOpts.Args = opts.Args
+		bindOpts.Env = opts.Env
+		bindOpts.TTY = opts.TTY
+		bindOpts.User = opts.User
+		bindOpts.WorkingDir = opts.WorkingDir
+		if opts.Timeout > 0 {
+			bindOpts.TimeoutSec = opts.Timeout.Seconds()
+		}
+	}
+
+	result, err := b.handle.ExecStream(command, bindOpts, binding.ExecCallbacks{
+		OnStdout: cb.OnStdout,
+		OnStderr: cb.OnStderr,
+	})
+	if err != nil {
+		return nil, err
+	}
+	out := ExecResult(result)
+	return &out, nil
+}
+
 // Close only frees the handle; it does not remove the underlying box.
 func (b *Box) Close() {
 	if b.handle != nil {

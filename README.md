@@ -72,6 +72,18 @@ res, _ := box.Exec("echo", &client.ExecOptions{Args: []string{"hello"}})
 fmt.Println(res.ExitCode, res.Stdout)
 ```
 
+Streaming output is also available:
+
+```go
+res, _ := box.ExecStream("/bin/sh", &client.ExecOptions{
+	Args: []string{"-lc", "echo hello && echo warn 1>&2"},
+}, client.ExecStreamCallbacks{
+	OnStdout: func(line string) { fmt.Println("stdout:", line) },
+	OnStderr: func(line string) { fmt.Println("stderr:", line) },
+})
+fmt.Println(res.ExitCode, res.Stdout, res.Stderr)
+```
+
 ## Shared Directories
 
 `govm` exposes host directory mounts through `pkg/client`:

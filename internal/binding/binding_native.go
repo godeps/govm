@@ -77,6 +77,11 @@ type ExecOptions struct {
 	WorkingDir string            `json:"working_dir,omitempty"`
 }
 
+type ExecCallbacks struct {
+	OnStdout func(string)
+	OnStderr func(string)
+}
+
 type ExecResult struct {
 	ExitCode int
 	Stdout   []string

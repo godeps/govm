@@ -27,6 +27,7 @@ type outputCollector struct {
 	mu     sync.Mutex
 	stdout []string
 	stderr []string
+	cb     ExecCallbacks
 }
 
 //export goOutputCallback
@@ -36,16 +37,32 @@ func goOutputCallback(text *C.char, streamType C.int, userData unsafe.Pointer) {
 	line := C.GoString(text)
 
 	collector.mu.Lock()
-	defer collector.mu.Unlock()
-
 	if int(streamType) == 0 {
 		collector.stdout = append(collector.stdout, line)
-	} else {
-		collector.stderr = append(collector.stderr, line)
+		cb := collector.cb.OnStdout
+		collector.mu.Unlock()
+		if cb != nil {
+			cb(line)
+		}
+		return
+	}
+	collector.stderr = append(collector.stderr, line)
+	cb := collector.cb.OnStderr
+	collector.mu.Unlock()
+	if cb != nil {
+		cb(line)
 	}
 }
 
 func (b *Box) Exec(command string, opts ExecOptions) (ExecResult, error) {
+	return b.execWithCallbacks(command, opts, ExecCallbacks{})
+}
+
+func (b *Box) ExecStream(command string, opts ExecOptions, cb ExecCallbacks) (ExecResult, error) {
+	return b.execWithCallbacks(command, opts, cb)
+}
+
+func (b *Box) execWithCallbacks(command string, opts ExecOptions, cb ExecCallbacks) (ExecResult, error) {
 	cCommand := C.CString(command)
 	defer C.free(unsafe.Pointer(cCommand))
 
@@ -56,7 +73,7 @@ func (b *Box) Exec(command string, opts ExecOptions) (ExecResult, error) {
 	cOptsJSON := C.CString(string(optsJSON))
 	defer C.free(unsafe.Pointer(cOptsJSON))
 
-	collector := &outputCollector{}
+	collector := &outputCollector{cb: cb}
 	h := cgo.NewHandle(collector)
 	defer h.Delete()
 
