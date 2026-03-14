@@ -58,6 +58,11 @@ type ExecOptions struct {
 	WorkingDir string            `json:"working_dir,omitempty"`
 }
 
+type ExecCallbacks struct {
+	OnStdout func(string)
+	OnStderr func(string)
+}
+
 type ExecResult struct {
 	ExitCode int
 	Stdout   []string
@@ -70,6 +75,9 @@ func (b *Box) Start() error           { return errNativeUnavailable }
 func (b *Box) Stop() error            { return errNativeUnavailable }
 func (b *Box) Info() (BoxInfo, error) { return BoxInfo{}, errNativeUnavailable }
 func (b *Box) Exec(command string, opts ExecOptions) (ExecResult, error) {
+	return ExecResult{}, errNativeUnavailable
+}
+func (b *Box) ExecStream(command string, opts ExecOptions, cb ExecCallbacks) (ExecResult, error) {
 	return ExecResult{}, errNativeUnavailable
 }
 func (b *Box) Free() {}

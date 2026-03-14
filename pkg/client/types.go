@@ -41,6 +41,12 @@ type ExecOptions struct {
 	WorkingDir string
 }
 
+// ExecStreamCallbacks receives incremental stdout/stderr from guest command execution.
+type ExecStreamCallbacks struct {
+	OnStdout func(string)
+	OnStderr func(string)
+}
+
 // ExecResult is the final result of command execution.
 type ExecResult struct {
 	ExitCode int

@@ -121,3 +121,60 @@ func TestNativeMountE2E(t *testing.T) {
 		t.Fatalf("stop box: %v", err)
 	}
 }
+
+func TestNativeExecStreamE2E(t *testing.T) {
+	if os.Getenv("GOVM_E2E") != "1" {
+		t.Skip("set GOVM_E2E=1 to run native integration tests")
+	}
+
+	rt, err := NewRuntime(nil)
+	if err != nil {
+		t.Fatalf("new runtime: %v", err)
+	}
+	defer rt.Close()
+
+	ctx := context.Background()
+	name := fmt.Sprintf("govm-stream-%d", time.Now().UnixNano())
+	defer func() { _ = rt.RemoveBox(ctx, name, true) }()
+
+	box, err := rt.CreateBox(ctx, name, BoxOptions{OfflineImage: "py312-alpine"})
+	if err != nil {
+		t.Fatalf("create box: %v", err)
+	}
+	defer box.Close()
+
+	if err := box.Start(); err != nil {
+		t.Fatalf("start box: %v", err)
+	}
+
+	var stdout []string
+	var stderr []string
+	res, err := box.ExecStream("/bin/sh", &ExecOptions{
+		Args: []string{"-lc", "echo stream-out && echo stream-err 1>&2"},
+	}, ExecStreamCallbacks{
+		OnStdout: func(line string) { stdout = append(stdout, line) },
+		OnStderr: func(line string) { stderr = append(stderr, line) },
+	})
+	if err != nil {
+		t.Fatalf("exec stream: %v", err)
+	}
+	if res.ExitCode != 0 {
+		t.Fatalf("exec stream exit=%d stderr=%v", res.ExitCode, res.Stderr)
+	}
+	if got := strings.Join(stdout, "\n"); !strings.Contains(got, "stream-out") {
+		t.Fatalf("stdout callbacks missing marker: %q", got)
+	}
+	if got := strings.Join(stderr, "\n"); !strings.Contains(got, "stream-err") {
+		t.Fatalf("stderr callbacks missing marker: %q", got)
+	}
+	if got := strings.Join(res.Stdout, "\n"); !strings.Contains(got, "stream-out") {
+		t.Fatalf("result stdout missing marker: %q", got)
+	}
+	if got := strings.Join(res.Stderr, "\n"); !strings.Contains(got, "stream-err") {
+		t.Fatalf("result stderr missing marker: %q", got)
+	}
+
+	if err := box.Stop(); err != nil {
+		t.Fatalf("stop box: %v", err)
+	}
+}
