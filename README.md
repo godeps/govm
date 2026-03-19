@@ -56,6 +56,25 @@ STRICT=1 make platform-check
 ./scripts/build-bridge.sh release
 ```
 
+Build against a local `boxlite` source checkout instead of the default git dependency resolution:
+
+```bash
+BOXLITE_DEPS_STUB=0 BOXLITE_REPO_DIR=/path/to/boxlite ./scripts/build-bridge.sh release
+```
+
+## GitHub Actions native asset refresh
+
+This repository includes a manual `build-native` workflow that:
+
+- checks out `boxlite` source with submodules
+- builds runtime assets for `linux_amd64`, `linux_arm64`, and `darwin_arm64`
+- builds `libgovm_boxlite_bridge.a` against that local `boxlite` checkout
+- stages files into `internal/native/<platform>` and `internal/runtimeassets/runtime/<platform>`
+- runs strict platform validation
+- commits the asset refresh back to the triggering branch only when files changed
+
+Use `Actions -> build-native -> Run workflow` to trigger it.
+
 ## Public API sample
 
 ```go
