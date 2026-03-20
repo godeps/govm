@@ -80,3 +80,38 @@ func TestFindBoxliteRuntimeDirPrefersRuntimeWithRequiredFiles(t *testing.T) {
 		t.Fatalf("expected runtime dir %q, got %q", complete, got)
 	}
 }
+
+func TestFindBoxliteRuntimeDirAcceptsWorkspaceRootLayout(t *testing.T) {
+	t.Helper()
+
+	workspaceRoot := t.TempDir()
+	targetDir := filepath.Join(workspaceRoot, "target")
+	if err := os.MkdirAll(targetDir, 0o755); err != nil {
+		t.Fatalf("mkdir target dir: %v", err)
+	}
+
+	for _, name := range []string{"boxlite-guest", "boxlite-shim", "bwrap", "debugfs", "libkrunfw.so.5", "mke2fs"} {
+		if err := os.WriteFile(filepath.Join(workspaceRoot, name), []byte(name), 0o755); err != nil {
+			t.Fatalf("write runtime file %s: %v", name, err)
+		}
+	}
+
+	repoRoot, err := filepath.Abs(filepath.Join("..", ".."))
+	if err != nil {
+		t.Fatalf("resolve repo root: %v", err)
+	}
+
+	scriptPath := filepath.Join(repoRoot, "scripts", "find-boxlite-runtime-dir.sh")
+	cmd := exec.Command(scriptPath, targetDir)
+	cmd.Dir = repoRoot
+
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("find runtime dir: %v\n%s", err, output)
+	}
+
+	got := strings.TrimSpace(string(output))
+	if got != workspaceRoot {
+		t.Fatalf("expected workspace root runtime dir %q, got %q", workspaceRoot, got)
+	}
+}
