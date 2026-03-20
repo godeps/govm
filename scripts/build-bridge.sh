@@ -6,7 +6,12 @@ BRIDGE_DIR="$ROOT_DIR/rust-bridge"
 TARGET_PLATFORM="${TARGET_PLATFORM:-$(go env GOOS)_$(go env GOARCH)}"
 BOXLITE_REPO_DIR="${BOXLITE_REPO_DIR:-}"
 BOXLITE_NATIVE_LIB_DIR="${BOXLITE_NATIVE_LIB_DIR:-}"
-STUB_MODE="${BOXLITE_DEPS_STUB:-1}"
+STUB_MODE_RAW="${BOXLITE_DEPS_STUB:-1}"
+if [[ "$STUB_MODE_RAW" == "1" ]]; then
+  STUB_MODE="1"
+else
+  STUB_MODE="0"
+fi
 WORK_BRIDGE_DIR="$BRIDGE_DIR"
 patch_config_file=""
 bridge_copy_dir=""
@@ -95,12 +100,20 @@ fi
 if [[ "$PROFILE" == "release" ]]; then
   export RUSTFLAGS="${RUSTFLAGS:-} -C strip=symbols"
   cargo_cmd+=(build --release)
-  BOXLITE_DEPS_STUB="$STUB_MODE" "${cargo_cmd[@]}"
+  if [[ "$STUB_MODE" == "1" ]]; then
+    BOXLITE_DEPS_STUB=1 "${cargo_cmd[@]}"
+  else
+    env -u BOXLITE_DEPS_STUB "${cargo_cmd[@]}"
+  fi
   build_output="$WORK_BRIDGE_DIR/target/release/libgovm_boxlite_bridge.a"
   dest_output="$BRIDGE_DIR/target/release/libgovm_boxlite_bridge.a"
 else
   cargo_cmd+=(build)
-  BOXLITE_DEPS_STUB="$STUB_MODE" "${cargo_cmd[@]}"
+  if [[ "$STUB_MODE" == "1" ]]; then
+    BOXLITE_DEPS_STUB=1 "${cargo_cmd[@]}"
+  else
+    env -u BOXLITE_DEPS_STUB "${cargo_cmd[@]}"
+  fi
   build_output="$WORK_BRIDGE_DIR/target/debug/libgovm_boxlite_bridge.a"
   dest_output="$BRIDGE_DIR/target/debug/libgovm_boxlite_bridge.a"
 fi

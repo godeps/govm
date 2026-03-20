@@ -14,19 +14,9 @@ env:
   SKIP_INSTALL_NODEJS: '1'
 
 jobs:
-  build:
-    name: Build (${{ matrix.platform }})
-    runs-on: ${{ matrix.runner }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: linux_amd64
-            runner: ubuntu-latest
-          - platform: linux_arm64
-            runner: ubuntu-24.04-arm
-          - platform: darwin_arm64
-            runner: macos-15
+  build-darwin-arm64:
+    name: Build (darwin_arm64)
+    runs-on: macos-15
 
     steps:
       - name: Checkout govm
@@ -73,16 +63,15 @@ jobs:
 
       - name: Build govm bridge against local boxlite checkout
         run: |
-          BOXLITE_DEPS_STUB=0 \
           BOXLITE_REPO_DIR="$GITHUB_WORKSPACE/boxlite-src" \
-          TARGET_PLATFORM="${{ matrix.platform }}" \
+          TARGET_PLATFORM="darwin_arm64" \
           ./scripts/build-bridge.sh release
 
       - name: Stage repo assets
         run: |
           stage_dir="$RUNNER_TEMP/staged"
           ./scripts/stage-platform-assets.sh \
-            "${{ matrix.platform }}" \
+            "darwin_arm64" \
             "rust-bridge/target/release/libgovm_boxlite_bridge.a" \
             "$BOXLITE_RUNTIME_DIR" \
             "$stage_dir"
@@ -91,14 +80,161 @@ jobs:
       - name: Upload staged assets
         uses: actions/upload-artifact@v4
         with:
-          name: platform-assets-${{ matrix.platform }}
+          name: platform-assets-darwin_arm64
+          path: ${{ env.STAGE_DIR }}/internal
+          if-no-files-found: error
+          retention-days: 7
+
+  build-linux-arm64:
+    name: Build (linux_arm64)
+    needs: build-darwin-arm64
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - name: Checkout govm
+        uses: actions/checkout@v4
+
+      - name: Resolve boxlite ref from Cargo.lock
+        id: boxlite-ref
+        run: |
+          ref=$(grep -oE 'git\+https://github.com/boxlite-ai/boxlite#[0-9a-f]{40}' rust-bridge/Cargo.lock | head -1 | cut -d'#' -f2)
+          if [[ -z "$ref" ]]; then
+            echo "failed to resolve boxlite git ref from rust-bridge/Cargo.lock" >&2
+            exit 1
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout boxlite
+        uses: actions/checkout@v4
+        with:
+          repository: boxlite-ai/boxlite
+          path: boxlite-src
+          ref: ${{ steps.boxlite-ref.outputs.ref }}
+          submodules: recursive
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Set up Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+
+      - name: Build boxlite runtime from source
+        working-directory: boxlite-src
+        run: |
+          make setup:build runtime
+          runtime_dir=$(find "$PWD/target" -path '*/out/runtime' -type d | sort | tail -1)
+          if [[ -z "$runtime_dir" ]]; then
+            echo "runtime dir not found under boxlite target/" >&2
+            exit 1
+          fi
+          echo "BOXLITE_RUNTIME_DIR=$runtime_dir" >> "$GITHUB_ENV"
+
+      - name: Build govm bridge against local boxlite checkout
+        run: |
+          BOXLITE_REPO_DIR="$GITHUB_WORKSPACE/boxlite-src" \
+          TARGET_PLATFORM="linux_arm64" \
+          ./scripts/build-bridge.sh release
+
+      - name: Stage repo assets
+        run: |
+          stage_dir="$RUNNER_TEMP/staged"
+          ./scripts/stage-platform-assets.sh \
+            "linux_arm64" \
+            "rust-bridge/target/release/libgovm_boxlite_bridge.a" \
+            "$BOXLITE_RUNTIME_DIR" \
+            "$stage_dir"
+          echo "STAGE_DIR=$stage_dir" >> "$GITHUB_ENV"
+
+      - name: Upload staged assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: platform-assets-linux_arm64
+          path: ${{ env.STAGE_DIR }}/internal
+          if-no-files-found: error
+          retention-days: 7
+
+  build-linux-amd64:
+    name: Build (linux_amd64)
+    needs: build-linux-arm64
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout govm
+        uses: actions/checkout@v4
+
+      - name: Resolve boxlite ref from Cargo.lock
+        id: boxlite-ref
+        run: |
+          ref=$(grep -oE 'git\+https://github.com/boxlite-ai/boxlite#[0-9a-f]{40}' rust-bridge/Cargo.lock | head -1 | cut -d'#' -f2)
+          if [[ -z "$ref" ]]; then
+            echo "failed to resolve boxlite git ref from rust-bridge/Cargo.lock" >&2
+            exit 1
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout boxlite
+        uses: actions/checkout@v4
+        with:
+          repository: boxlite-ai/boxlite
+          path: boxlite-src
+          ref: ${{ steps.boxlite-ref.outputs.ref }}
+          submodules: recursive
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Set up Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+
+      - name: Build boxlite runtime from source
+        working-directory: boxlite-src
+        run: |
+          make setup:build runtime
+          runtime_dir=$(find "$PWD/target" -path '*/out/runtime' -type d | sort | tail -1)
+          if [[ -z "$runtime_dir" ]]; then
+            echo "runtime dir not found under boxlite target/" >&2
+            exit 1
+          fi
+          echo "BOXLITE_RUNTIME_DIR=$runtime_dir" >> "$GITHUB_ENV"
+
+      - name: Build govm bridge against local boxlite checkout
+        run: |
+          BOXLITE_REPO_DIR="$GITHUB_WORKSPACE/boxlite-src" \
+          TARGET_PLATFORM="linux_amd64" \
+          ./scripts/build-bridge.sh release
+
+      - name: Stage repo assets
+        run: |
+          stage_dir="$RUNNER_TEMP/staged"
+          ./scripts/stage-platform-assets.sh \
+            "linux_amd64" \
+            "rust-bridge/target/release/libgovm_boxlite_bridge.a" \
+            "$BOXLITE_RUNTIME_DIR" \
+            "$stage_dir"
+          echo "STAGE_DIR=$stage_dir" >> "$GITHUB_ENV"
+
+      - name: Upload staged assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: platform-assets-linux_amd64
           path: ${{ env.STAGE_DIR }}/internal
           if-no-files-found: error
           retention-days: 7
 
   commit-assets:
     name: Commit assets
-    needs: build
+    needs:
+      - build-darwin-arm64
+      - build-linux-arm64
+      - build-linux-amd64
     runs-on: ubuntu-latest
     if: github.ref_type == 'branch'
     permissions:
