@@ -1,0 +1,400 @@
+syntax = "proto3";
+
+package boxlite.v1;
+
+// ============================================================================
+// Services
+// ============================================================================
+
+// Container lifecycle management
+service Container {
+  // Initialize OCI container (called after GuestInit)
+  // Prepares rootfs, then starts the container with the provided configuration
+  rpc Init(ContainerInitRequest) returns (ContainerInitResponse);
+}
+
+// Guest agent management
+service Guest {
+  // Initialize guest environment (mounts, network)
+  // MUST be called first after connection, before Container.Init
+  rpc Init(GuestInitRequest) returns (GuestInitResponse);
+
+  // Health check
+  rpc Ping(PingRequest) returns (PingResponse);
+
+  // Shutdown guest agent gracefully
+  rpc Shutdown(ShutdownRequest) returns (ShutdownResponse);
+
+  // Quiesce all writable filesystems (FIFREEZE ioctl).
+  // Flushes dirty pages and blocks new writes atomically.
+  // Used before SIGSTOP for point-in-time consistent snapshots.
+  // Follows QEMU guest-agent's guest-fsfreeze-freeze protocol.
+  rpc Quiesce(QuiesceRequest) returns (QuiesceResponse);
+
+  // Thaw previously quiesced filesystems (FITHAW ioctl).
+  // Must be called after SIGCONT to unblock writes.
+  rpc Thaw(ThawRequest) returns (ThawResponse);
+}
+
+// Command execution
+service Execution {
+  // Start execution immediately.
+  rpc Exec(ExecRequest) returns (ExecResponse);
+
+  // Attach to stdout/stderr (output only).
+  rpc Attach(AttachRequest) returns (stream ExecOutput);
+
+  // Send stdin (optional).
+  rpc SendInput(stream ExecStdin) returns (SendInputAck);
+
+  // Wait for execution to complete (blocking).
+  rpc Wait(WaitRequest) returns (WaitResponse);
+
+  // Kill execution (send signal)
+  rpc Kill(KillRequest) returns (KillResponse);
+
+  // Resize TTY window (PTY executions only)
+  rpc ResizeTty(ResizeTtyRequest) returns (ResizeTtyResponse);
+}
+
+// File transfer between host and container rootfs
+service Files {
+  // Upload a tar archive and extract it into the container rootfs at dest_path
+  rpc Upload(stream UploadChunk) returns (UploadResponse);
+
+  // Download a path from the container rootfs as a tar archive
+  rpc Download(DownloadRequest) returns (stream DownloadChunk);
+}
+
+// ============================================================================
+// Guest Service Messages
+// ============================================================================
+
+message GuestInitRequest {
+  // Unified volume mounts (virtiofs + block devices)
+  repeated Volume volumes = 1;
+
+  // Network configuration (optional)
+  NetworkInit network = 2;
+}
+
+message GuestInitResponse {
+  oneof result {
+    GuestInitSuccess success = 1;
+    GuestInitError error = 2;
+  }
+}
+
+message GuestInitSuccess {}
+
+message GuestInitError {
+  string reason = 1;
+}
+
+// Unified volume mount specification
+message Volume {
+  string mount_point = 1; // where to mount in guest
+  oneof source {
+    VirtiofsSource virtiofs = 2;
+    BlockDeviceSource block_device = 3;
+  }
+  // Optional container_id for convention-based paths
+  // When set with virtiofs, guest constructs path:
+  // /run/boxlite/shared/containers/{container_id}/volumes/{tag}
+  string container_id = 4;
+}
+
+// Virtiofs volume source
+message VirtiofsSource {
+  string tag = 1;         // virtiofs tag name
+  bool read_only = 2;     // read only in guest
+}
+
+// Block device volume source
+//
+// Controls how block devices are mounted in the guest:
+// - filesystem: Target filesystem type (only EXT4 supported for resize)
+// - need_format: If true, format device before mounting (use for fresh disks)
+// - need_resize: If true, resize filesystem after mounting to fill available space
+//                (use when QCOW2 virtual size > filesystem size)
+message BlockDeviceSource {
+  string device = 1;           // device path (e.g., "/dev/vda")
+  Filesystem filesystem = 2;   // target filesystem type (e.g., EXT4)
+  bool need_format = 3;        // if true, format device with filesystem before mount
+  bool need_resize = 4;        // if true, run resize2fs after mount to fill disk
+}
+
+// Supported filesystem types
+enum Filesystem {
+  FILESYSTEM_UNSPECIFIED = 0;
+  FILESYSTEM_EXT4 = 1;
+}
+
+// Rootfs initialization strategy
+// Guest constructs paths from container_id using its own layout knowledge
+message RootfsInit {
+  oneof strategy {
+    MergedRootfs merged = 1;
+    OverlayRootfs overlay = 2;
+    DiskRootfs disk = 3;
+  }
+}
+
+// Single merged rootfs - guest constructs path from container_id
+message MergedRootfs {}
+
+// Overlayfs from layers - guest constructs paths from container_id and layer_names
+message OverlayRootfs {
+  repeated string layer_names = 1; // layer directory names (e.g., "sha256-abc123")
+  bool copy_layers = 2;            // if true, copy layers to disk first (fixes UID mapping)
+}
+
+// Disk-based rootfs - block device mounted directly as container rootfs
+//
+// COW (copy-on-write) workflow:
+// - Base disk: Pre-built ext4 image with merged container layers
+// - COW disk: QCOW2 overlay that inherits from base, may have larger virtual size
+// - need_format: Usually false (COW inherits formatted base)
+// - need_resize: True if COW virtual size > base size (expands ext4 to fill disk)
+message DiskRootfs {
+  string device = 1;           // block device path (e.g., "/dev/vda")
+  bool need_format = 2;        // if true, format device before mounting
+  bool need_resize = 3;        // if true, resize filesystem after mounting to fill disk
+}
+
+// Network initialization
+message NetworkInit {
+  string interface = 1;        // interface name (e.g., "eth0")
+  optional string ip = 2;      // IP address (optional, use DHCP if not set)
+  optional string gateway = 3; // gateway address
+}
+
+message PingRequest {}
+
+message PingResponse {
+  string version = 1;  // Guest agent version
+}
+
+message ShutdownRequest {}
+
+message ShutdownResponse {}
+
+message QuiesceRequest {}
+
+message QuiesceResponse {
+  // Number of filesystems successfully frozen
+  uint32 frozen_count = 1;
+}
+
+message ThawRequest {}
+
+message ThawResponse {
+  // Number of filesystems successfully thawed
+  uint32 thawed_count = 1;
+}
+
+// ============================================================================
+// Container Service Messages
+// ============================================================================
+
+message ContainerInitRequest {
+  // Container ID (generated by host, used for paths and libcontainer state)
+  string container_id = 1;
+  ContainerConfig container_config = 2;
+  // Rootfs initialization strategy (moved from GuestInit)
+  RootfsInit rootfs = 3;
+  // Bind mounts from guest VM paths into container namespace
+  repeated BindMount mounts = 4;
+}
+
+// Bind mount from guest volume to container path
+// Uses convention-based paths: /run/boxlite/shared/containers/{container_id}/volumes/{volume_name}
+message BindMount {
+  // Volume name (used with container_id to construct guest path)
+  // Guest constructs: /run/boxlite/shared/containers/{container_id}/volumes/{volume_name}
+  string volume_name = 1;
+  // Destination path in container (e.g., "/data")
+  string destination = 2;
+  // Read-only mount
+  bool read_only = 3;
+}
+
+message ContainerInitResponse {
+  oneof result {
+    ContainerInitSuccess success = 1;
+    ContainerInitError error = 2;
+  }
+}
+
+message ContainerInitSuccess {
+  string container_id = 1;  // UUID assigned to the container
+}
+
+message ContainerInitError {
+  string reason = 1;
+}
+
+// Container configuration (OCI-derived, from image)
+message ContainerConfig {
+  // Entrypoint command (e.g., ["/bin/sh", "-c", "echo hello"])
+  repeated string entrypoint = 1;
+
+  // Environment variables (e.g., ["PATH=/usr/bin", "HOME=/root"])
+  repeated string env = 2;
+
+  // Working directory (e.g., "/app")
+  string workdir = 3;
+
+  // Username or UID (format: <name|uid>[:<group|gid>]).
+  string user = 4;
+}
+
+// ============================================================================
+// Execution Service Messages
+// ============================================================================
+
+// Exec: start immediately
+message ExecRequest {
+  optional string execution_id = 1;
+  string program = 2;
+  repeated string args = 3;
+  map<string, string> env = 4;
+  string workdir = 5;
+  uint64 timeout_ms = 6;
+  optional TtyConfig tty = 7;  // If set, use PTY instead of pipes
+  optional string user = 8;    // User override (format: <name|uid>[:<group|gid>])
+}
+
+// TTY configuration for interactive sessions
+message TtyConfig {
+  uint32 rows = 1;      // Terminal height
+  uint32 cols = 2;      // Terminal width
+  uint32 x_pixels = 3;  // Optional: pixel width
+  uint32 y_pixels = 4;  // Optional: pixel height
+}
+
+message ExecResponse {
+  string execution_id = 1;
+  uint32 pid = 2;
+  uint64 started_at_ms = 3;
+  optional ExecError error = 4; // if set, no process is running
+}
+
+message ExecError {
+  string reason = 1;
+  string detail = 2;
+}
+
+// Attach: output only
+message AttachRequest {
+  string execution_id = 1;
+}
+
+message ExecOutput {
+  oneof event {
+    Stdout stdout = 1;
+    Stderr stderr = 2;
+  }
+}
+
+message Stdout {
+  bytes data = 1;
+}
+
+message Stderr {
+  bytes data = 1;
+}
+
+// SendInput: client streaming stdin
+message ExecStdin {
+  string execution_id = 1;
+  bytes data = 2;
+  bool close = 3;
+}
+
+message SendInputAck {}
+
+// Wait for execution result (blocking)
+message WaitRequest {
+  string execution_id = 1;
+}
+
+message WaitResponse {
+  int32 exit_code = 1;    // set if exited normally
+  int32 signal = 2;       // set if terminated by signal
+  bool timed_out = 3;     // true if timeout triggered termination
+  uint64 duration_ms = 4; // set for finished process
+  string error_message = 5; // diagnostic when process died unexpectedly (e.g., container init death)
+}
+
+// Kill execution (send signal)
+message KillRequest {
+  string execution_id = 1;
+  int32 signal = 2;  // Signal number (default: 9 = SIGKILL)
+}
+
+message KillResponse {
+  bool success = 1;
+  optional string error = 2;
+}
+
+// Resize TTY window
+message ResizeTtyRequest {
+  string execution_id = 1;
+  uint32 rows = 2;
+  uint32 cols = 3;
+  uint32 x_pixels = 4;
+  uint32 y_pixels = 5;
+}
+
+message ResizeTtyResponse {
+  bool success = 1;
+  optional string error = 2;
+}
+
+// ============================================================================
+// Files Service Messages
+// ============================================================================
+
+// Upload request stream
+//
+// The first chunk MUST include dest_path. Subsequent chunks MAY omit dest_path
+// to reduce overhead. Data should contain raw TAR bytes that will be extracted
+// under the target path (relative to container rootfs).
+message UploadChunk {
+  // Destination path inside container rootfs (e.g., "/app")
+  string dest_path = 1;
+  // Optional explicit container_id; if empty the server will pick the sole container
+  string container_id = 2;
+  // Raw tar archive bytes
+  bytes data = 3;
+  // If true, create parent directories as needed (default: true)
+  bool mkdir_parents = 4;
+  // If true, overwrite existing files (default: true)
+  bool overwrite = 5;
+}
+
+message UploadResponse {
+  bool success = 1;
+  optional string error = 2;
+}
+
+// Download request
+//
+// The server will stream a tar archive containing the requested path.
+message DownloadRequest {
+  // Source path inside container rootfs (file or directory)
+  string src_path = 1;
+  // Optional explicit container_id; if empty the server will pick the sole container
+  string container_id = 2;
+  // If true, include parent directory entry in archive (docker cp semantics)
+  bool include_parent = 3;
+  // If true, follow symlinks when archiving
+  bool follow_symlinks = 4;
+}
+
+// Download response stream
+message DownloadChunk {
+  // Raw tar archive bytes
+  bytes data = 1;
+}

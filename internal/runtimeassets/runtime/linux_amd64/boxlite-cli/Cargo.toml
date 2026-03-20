@@ -1,0 +1,48 @@
+[package]
+name = "boxlite-cli"
+version = "0.2.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+publish = false
+description = "Command-line interface for BoxLite container runtime"
+
+[[bin]]
+name = "boxlite"
+path = "src/main.rs"
+
+[dependencies]
+boxlite = { path = "../boxlite" }
+clap = { version = "4.5", features = ["derive", "env"] }
+clap_complete = "4.5"
+tokio = { version = "1.37", features = ["rt", "rt-multi-thread", "macros", "signal"] }
+notify = "6.1"
+futures = "0.3"
+term_size = "0.3"
+nix = { version = "0.30.1", features = ["term", "signal"] }
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter"] }
+
+# Serialization (aligned with core boxlite)
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+
+# Runtime extraction
+dirs = "6.0"
+ulid = "1.1"
+tabled = "0.17"
+chrono = "0.4.43"
+comfy-table = "7.2.1"
+
+gtmpl = "0.7"
+gtmpl_value = "0.5"
+[build-dependencies]
+
+[dev-dependencies]
+boxlite-test-utils = { path = "../test-utils" }
+assert_cmd = "2.1.1"
+predicates = "3.1.3"
+rstest = "0.21"
+tempfile = "3.24.0"

@@ -1,0 +1,22 @@
+[package]
+name = "libgvproxy-sys"
+version.workspace = true
+edition = "2021"
+authors.workspace = true
+license.workspace = true
+description = "FFI bindings to gvproxy-bridge C library"
+repository = "https://github.com/boxlite-ai/boxlite"
+
+# This tells Cargo that this crate links with libgvproxy
+links = "gvproxy"
+exclude = ["gvproxy-bridge"]
+
+[build-dependencies]
+# No dependencies needed - we use Make to build
+
+[dependencies]
+# Minimal dependencies for FFI
+libc = "0.2"
+
+[features]
+default = []

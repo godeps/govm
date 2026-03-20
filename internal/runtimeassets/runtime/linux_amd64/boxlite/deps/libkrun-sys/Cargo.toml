@@ -1,0 +1,22 @@
+[package]
+name = "libkrun-sys"
+version.workspace = true
+edition = "2021"
+authors.workspace = true
+license.workspace = true
+description = "FFI bindings to libkrun and libkrunfw"
+repository = "https://github.com/boxlite-ai/boxlite"
+
+links = "krun"
+exclude = ["vendor"]
+
+[build-dependencies]
+pkg-config = "0.3"
+num_cpus = "1.16"
+
+[dependencies]
+libc = "0.2"
+
+[features]
+default = []
+link-static = []  # Emit rustc-link-lib to statically link libkrun.a into the binary

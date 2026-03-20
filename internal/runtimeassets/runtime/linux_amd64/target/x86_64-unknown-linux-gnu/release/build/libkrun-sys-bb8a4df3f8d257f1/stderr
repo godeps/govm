@@ -1,0 +1,189 @@
+init/init.c: In function ‘main’:
+init/init.c:1111:9: warning: ignoring return value of ‘chdir’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+ 1111 |         chdir("/newroot");
+      |         ^~~~~~~~~~~~~~~~~
+init/init.c:1127:9: warning: ignoring return value of ‘chroot’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+ 1127 |         chroot(".");
+      |         ^~~~~~~~~~~
+init/init.c:1170:9: warning: ignoring return value of ‘sethostname’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+ 1170 |         sethostname(hostname, strlen(hostname));
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+init/init.c:1172:9: warning: ignoring return value of ‘sethostname’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+ 1172 |         sethostname(&localhost[0], strlen(localhost));
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+init/init.c:1182:9: warning: ignoring return value of ‘chdir’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+ 1182 |         chdir(env_workdir);
+      |         ^~~~~~~~~~~~~~~~~~
+init/init.c:1184:9: warning: ignoring return value of ‘chdir’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+ 1184 |         chdir(config_workdir);
+      |         ^~~~~~~~~~~~~~~~~~~~~
+init/init.c: In function ‘mount_filesystems’:
+init/init.c:453:5: warning: ignoring return value of ‘symlink’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  453 |     symlink("/proc/self/fd", "/dev/fd");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[1m[92m    Updating[0m crates.io index
+[1m[92m Downloading[0m crates ...
+[1m[92m  Downloaded[0m anstyle-query v1.1.3
+[1m[92m  Downloaded[0m anstyle v1.0.11
+[1m[92m  Downloaded[0m adler2 v2.0.0
+[1m[92m  Downloaded[0m autocfg v1.4.0
+[1m[92m  Downloaded[0m is_terminal_polyfill v1.70.1
+[1m[92m  Downloaded[0m env_filter v0.1.3
+[1m[92m  Downloaded[0m page_size v0.6.0
+[1m[92m  Downloaded[0m cfg-if v1.0.0
+[1m[92m  Downloaded[0m async-trait v0.1.88
+[1m[92m  Downloaded[0m simd-adler32 v0.3.7
+[1m[92m  Downloaded[0m tracing-attributes v0.1.29
+[1m[92m  Downloaded[0m unicode-ident v1.0.18
+[1m[92m  Downloaded[0m vmm-sys-util v0.14.0
+[1m[92m  Downloaded[0m serde v1.0.219
+[1m[92m  Downloaded[0m kvm-ioctls v0.22.0
+[1m[92m  Downloaded[0m vm-memory v0.16.2
+[1m[92m  Downloaded[0m imago v0.2.1
+[1m[92m  Downloaded[0m cc v1.2.26
+[1m[92m  Downloaded[0m aho-corasick v1.1.3
+[1m[92m  Downloaded[0m tracing v0.1.41
+[1m[92m  Downloaded[0m memchr v2.7.4
+[1m[92m  Downloaded[0m kvm-bindings v0.12.0
+[1m[92m  Downloaded[0m zerocopy v0.8.26
+[1m[92m  Downloaded[0m regex v1.11.1
+[1m[92m  Downloaded[0m flate2 v1.1.5
+[1m[92m  Downloaded[0m virtio-bindings v0.2.6
+[1m[92m  Downloaded[0m syn v2.0.101
+[1m[92m  Downloaded[0m miniz_oxide v0.8.8
+[1m[92m  Downloaded[0m log v0.4.27
+[1m[92m  Downloaded[0m linux-loader v0.13.0
+[1m[92m  Downloaded[0m regex-syntax v0.8.5
+[1m[92m  Downloaded[0m getrandom v0.3.3
+[1m[92m  Downloaded[0m tracing-core v0.1.34
+[1m[92m  Downloaded[0m proc-macro2 v1.0.95
+[1m[92m  Downloaded[0m jobserver v0.1.33
+[1m[92m  Downloaded[0m crc32fast v1.4.2
+[1m[92m  Downloaded[0m rand_core v0.9.3
+[1m[92m  Downloaded[0m libloading v0.8.8
+[1m[92m  Downloaded[0m env_logger v0.11.8
+[1m[92m  Downloaded[0m semver v1.0.26
+[1m[92m  Downloaded[0m rustc_version v0.4.1
+[1m[92m  Downloaded[0m quote v1.0.40
+[1m[92m  Downloaded[0m bzip2 v0.5.2
+[1m[92m  Downloaded[0m regex-automata v0.4.9
+[1m[92m  Downloaded[0m bzip2-sys v0.1.13+1.0.8
+[1m[92m  Downloaded[0m anstream v0.6.19
+[1m[92m  Downloaded[0m caps v0.5.5
+[1m[92m  Downloaded[0m jiff v0.2.14
+[1m[92m  Downloaded[0m zstd-sys v2.0.15+zstd.1.5.7
+[1m[92m  Downloaded[0m tokio v1.45.1
+[1m[92m  Downloaded[0m libc v0.2.172
+[1m[92m   Compiling[0m libc v0.2.172
+[1m[92m   Compiling[0m proc-macro2 v1.0.95
+[1m[92m   Compiling[0m unicode-ident v1.0.18
+[1m[92m   Compiling[0m quote v1.0.40
+[1m[92m   Compiling[0m cfg-if v1.0.0
+[1m[92m   Compiling[0m syn v2.0.101
+[1m[92m   Compiling[0m jobserver v0.1.33
+[1m[92m   Compiling[0m shlex v1.3.0
+[1m[92m   Compiling[0m cc v1.2.26
+[1m[92m   Compiling[0m thiserror v1.0.69
+[1m[92m   Compiling[0m autocfg v1.4.0
+[1m[92m   Compiling[0m pkg-config v0.3.32
+[1m[92m   Compiling[0m memoffset v0.9.1
+[1m[92m   Compiling[0m thiserror-impl v1.0.69
+[1m[92m   Compiling[0m cfg_aliases v0.2.1
+[1m[92m   Compiling[0m bitflags v1.3.2
+[1m[92m   Compiling[0m bitflags v2.10.0
+[1m[92m   Compiling[0m vmm-sys-util v0.14.0
+[1m[92m   Compiling[0m nix v0.30.1
+[1m[92m   Compiling[0m crossbeam-utils v0.8.21
+[1m[92m   Compiling[0m kvm-bindings v0.12.0
+[1m[92m   Compiling[0m semver v1.0.26
+[1m[92m   Compiling[0m log v0.4.27
+[1m[92m   Compiling[0m vm-memory v0.16.2
+[1m[92m   Compiling[0m getrandom v0.3.3
+[1m[92m   Compiling[0m zerocopy v0.8.26
+[1m[92m   Compiling[0m crossbeam-channel v0.5.15
+[1m[92m   Compiling[0m zstd-sys v2.0.15+zstd.1.5.7
+[1m[92m   Compiling[0m kvm-ioctls v0.22.0
+[1m[92m   Compiling[0m rustc_version v0.4.1
+[1m[92m   Compiling[0m utils v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/utils)
+[1m[92m   Compiling[0m once_cell v1.21.3
+[1m[92m   Compiling[0m memchr v2.7.4
+[1m[92m   Compiling[0m adler2 v2.0.0
+[1m[92m   Compiling[0m virtue v0.0.18
+[1m[92m   Compiling[0m simd-adler32 v0.3.7
+[1m[92m   Compiling[0m pin-project-lite v0.2.16
+[1m[92m   Compiling[0m miniz_oxide v0.8.8
+[1m[92m   Compiling[0m bincode_derive v2.0.1
+[1m[92m   Compiling[0m aho-corasick v1.1.3
+[1m[92m   Compiling[0m tracing-core v0.1.34
+[1m[92m   Compiling[0m ppv-lite86 v0.2.21
+[1m[92m   Compiling[0m rand_core v0.9.3
+[1m[92m   Compiling[0m imago v0.2.1
+[1m[92m   Compiling[0m bzip2-sys v0.1.13+1.0.8
+[1m[92m   Compiling[0m tracing-attributes v0.1.29
+[1m[92m   Compiling[0m unty v0.0.4
+[1m[92m   Compiling[0m zstd-safe v7.2.4
+[1m[92m   Compiling[0m regex-syntax v0.8.5
+[1m[92m   Compiling[0m regex-automata v0.4.9
+[1m[92m   Compiling[0m bincode v2.0.1
+[1m[92m   Compiling[0m tracing v0.1.41
+[1m[92m   Compiling[0m rand_chacha v0.9.0
+[1m[92m   Compiling[0m tokio v1.45.1
+[1m[92m   Compiling[0m smbios v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/smbios)
+[1m[92m   Compiling[0m async-trait v0.1.88
+[1m[92m   Compiling[0m page_size v0.6.0
+[1m[92m   Compiling[0m arch_gen v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/arch_gen)
+[1m[92m   Compiling[0m utf8parse v0.2.2
+[1m[92m   Compiling[0m anstyle-parse v0.2.7
+[1m[92m   Compiling[0m arch v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/arch)
+[1m[92m   Compiling[0m regex v1.11.1
+[1m[92m   Compiling[0m rand v0.9.2
+[1m[92m   Compiling[0m polly v0.0.1 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/polly)
+[1m[92m   Compiling[0m caps v0.5.5
+[1m[92m   Compiling[0m libloading v0.8.8
+[1m[92m   Compiling[0m crc32fast v1.4.2
+[1m[92m   Compiling[0m colorchoice v1.0.4
+[1m[92m   Compiling[0m anstyle v1.0.11
+[1m[92m   Compiling[0m virtio-bindings v0.2.6
+[1m[92m   Compiling[0m anstyle-query v1.1.3
+[1m[92m   Compiling[0m is_terminal_polyfill v1.70.1
+[1m[92m   Compiling[0m bzip2 v0.5.2
+[1m[92m   Compiling[0m anstream v0.6.19
+[1m[92m   Compiling[0m flate2 v1.1.5
+[1m[92m   Compiling[0m devices v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/devices)
+[1m[92m   Compiling[0m env_filter v0.1.3
+[1m[92m   Compiling[0m zstd v0.13.3
+[1m[92m   Compiling[0m cpuid v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/cpuid)
+[1m[92m   Compiling[0m kernel v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/kernel)
+[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0msrc/cpuid/src/common.rs:38:24
+   [1m[94m|[0m
+[1m[94m38[0m [1m[94m|[0m     let max_function = unsafe { __get_cpuid_max(function & leaf_0x80000000::LEAF_NUM).0 };
+   [1m[94m|[0m                        [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0msrc/cpuid/src/common.rs:46:17
+   [1m[94m|[0m
+[1m[94m46[0m [1m[94m|[0m     let entry = unsafe { __cpuid_count(function, count) };
+   [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0msrc/cpuid/src/brand_string.rs:107:30
+    [1m[94m|[0m
+[1m[94m107[0m [1m[94m|[0m         let mut cpuid_regs = unsafe { host_cpuid(0x8000_0000) };
+    [1m[94m|[0m                              [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0msrc/cpuid/src/brand_string.rs:115:26
+    [1m[94m|[0m
+[1m[94m115[0m [1m[94m|[0m             cpuid_regs = unsafe { host_cpuid(leaf) };
+    [1m[94m|[0m                          [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[92m   Compiling[0m linux-loader v0.13.0
+[1m[92m   Compiling[0m libkrun v1.16.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/libkrun)
+[1m[33mwarning[0m: `cpuid` (lib) generated 4 warnings
+[1m[92m   Compiling[0m jiff v0.2.14
+[1m[92m   Compiling[0m vmm v0.1.0 (/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/src/vmm)
+[1m[92m   Compiling[0m env_logger v0.11.8
+[1m[92m    Finished[0m `release` profile [optimized] target(s) in 2m 31s

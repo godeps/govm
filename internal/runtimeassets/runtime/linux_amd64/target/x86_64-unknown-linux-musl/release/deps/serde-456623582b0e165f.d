@@ -1,0 +1,14 @@
+/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/deps/serde-456623582b0e165f.d: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/build/serde-ed2514b1eddd73bf/out/private.rs
+
+/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/deps/libserde-456623582b0e165f.rlib: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/build/serde-ed2514b1eddd73bf/out/private.rs
+
+/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/deps/libserde-456623582b0e165f.rmeta: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/build/serde-ed2514b1eddd73bf/out/private.rs
+
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/build/serde-ed2514b1eddd73bf/out/private.rs:
+
+# env-dep:OUT_DIR=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/build/serde-ed2514b1eddd73bf/out

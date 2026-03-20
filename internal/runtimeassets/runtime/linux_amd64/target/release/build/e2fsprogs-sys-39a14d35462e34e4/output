@@ -1,0 +1,635 @@
+cargo:rerun-if-changed=build.rs
+cargo:rerun-if-changed=vendor/e2fsprogs
+cargo:rerun-if-env-changed=BOXLITE_DEPS_STUB
+cargo:warning=Building e2fsprogs tools...
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for wchar.h... yes
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking whether _XOPEN_SOURCE should be defined... no
+Generating configuration file for e2fsprogs version 1.47.3
+Package version 1.47.3 release 
+Release date is July, 2025
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for dlopen in -ldl... yes
+checking for gcc... (cached) gcc
+checking whether the compiler supports GNU C... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to enable C11 features... (cached) none needed
+checking how to run the C preprocessor... gcc -E
+checking for additional special compiler flags... (none)
+Disabling maintainer mode by default
+Disabling symlinks for install by default
+Disabling relative symlinks for install by default
+Disabling symlinks for build by default
+Disabling verbose make commands
+Disabling ELF shared libraries by default
+Disabling BSD shared libraries by default
+Disabling profiling libraries by default
+Disabling journal debugging by default
+Disabling blkid debugging by default
+Enabling testio debugging by default
+Disabling ext4 developer features by default
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for uuid_generate in -luuid... no
+Enabling private uuid library by default
+checking for pkg-config... (cached) /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for blkid_get_cache in -lblkid... no
+Enabling private blkid library by default
+Enabling use of backtrace by default
+Enabling debugfs support by default
+Disabling e2image support
+Disabling e2resize support
+Disabling e4defrag support
+Not building fsck wrapper
+Not building e2initrd helper
+Try using thread local support by default
+checking for thread local storage (TLS) class... __thread
+Try testing for pthread support by default
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking whether gcc is Clang... no
+checking whether pthreads work with "-pthread" and "-lpthread"... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking whether more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+Building uuidd by default
+Enabling mmp support by default
+Disabling tdb support
+Enabling bitmap statistics support by default
+Disabling additional bitmap statistics by default
+checking whether make sets $(MAKE)... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking whether NLS is requested... no
+checking for msgfmt... no
+checking for gmsgfmt... :
+checking for xgettext... no
+checking for msgmerge... no
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking 32-bit host C ABI... no
+checking for ELF binary format... yes
+checking for the common suffixes of directories in the library search path... lib,lib,lib64
+checking for CFPreferencesCopyAppValue... no
+checking for CFLocaleCopyPreferredLanguages... no
+checking whether to use NLS... no
+checking whether make sets $(MAKE)... (cached) yes
+checking for GNU make... make
+checking for ln... /usr/bin/ln
+checking whether ln -s works... yes
+checking for mv... /usr/bin/mv
+checking for cp... /usr/bin/cp
+checking for rm... /usr/bin/rm
+checking for chmod... /usr/bin/chmod
+checking for gawk... gawk
+checking for egrep... (cached) /usr/bin/grep -E
+checking for sed... (cached) /usr/bin/sed
+checking for perl... /usr/bin/perl
+checking for ldconfig... /usr/sbin/ldconfig
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking for makeinfo... makeinfo
+checking for dirent.h... yes
+checking for errno.h... yes
+checking for execinfo.h... yes
+checking for getopt.h... yes
+checking for malloc.h... yes
+checking for mntent.h... yes
+checking for paths.h... yes
+checking for pthread.h... yes
+checking for semaphore.h... yes
+checking for setjmp.h... yes
+checking for signal.h... yes
+checking for stdarg.h... yes
+checking for stdint.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for termios.h... yes
+checking for termio.h... yes
+checking for unistd.h... (cached) yes
+checking for utime.h... yes
+checking for attr/xattr.h... no
+checking for linux/falloc.h... yes
+checking for linux/fd.h... yes
+checking for linux/fsmap.h... yes
+checking for linux/fsverity.h... yes
+checking for linux/major.h... yes
+checking for linux/loop.h... yes
+checking for linux/types.h... yes
+checking for net/if_dl.h... no
+checking for netinet/in.h... yes
+checking for sys/acl.h... no
+checking for sys/disklabel.h... no
+checking for sys/disk.h... no
+checking for sys/file.h... yes
+checking for sys/ioctl.h... yes
+checking for sys/key.h... no
+checking for sys/mkdev.h... no
+checking for sys/mman.h... yes
+checking for sys/mount.h... yes
+checking for sys/prctl.h... yes
+checking for sys/random.h... yes
+checking for sys/resource.h... yes
+checking for sys/select.h... yes
+checking for sys/socket.h... yes
+checking for sys/sockio.h... no
+checking for sys/stat.h... (cached) yes
+checking for sys/syscall.h... yes
+checking for sys/sysmacros.h... yes
+checking for sys/time.h... yes
+checking for sys/types.h... (cached) yes
+checking for sys/un.h... yes
+checking for sys/wait.h... yes
+checking for sys/xattr.h... yes
+checking for a dd(1) program that supports iflag=fullblock... dd
+checking for net/if.h... yes
+checking for vprintf... yes
+checking for struct dirent.d_reclen... yes
+checking for struct stat.st_atim... yes
+checking for ssize_t... yes
+checking for gcc options needed to detect all undeclared functions... none needed
+checking whether llseek is declared... no
+checking whether lseek64 is declared... yes
+checking whether fsmap_sizeof is declared... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking size of short... 2
+checking size of int... 4
+checking size of long... 8
+checking size of long long... 8
+checking size of off_t... 8
+checking size of time_t... 8
+checking size of void *... 8
+checking whether byte ordering is bigendian... no
+checking for __uNN types... using <asm/types.h>
+checking for inttypes.h... (cached) yes
+checking for intptr_t... yes
+checking whether struct stat has a st_flags field... no
+checking for struct sockaddr.sa_len... no
+checking for __secure_getenv... no
+checking for add_key... no
+checking for backtrace... yes
+checking for chflags... no
+checking for dlopen... (cached) yes
+checking for fadvise64... no
+checking for fallocate... yes
+checking for fallocate64... yes
+checking for fchown... yes
+checking for fcntl... yes
+checking for fdatasync... yes
+checking for fstat64... yes
+checking for fsync... yes
+checking for ftruncate64... yes
+checking for futimes... yes
+checking for getcwd... yes
+checking for getdtablesize... yes
+checking for getentropy... yes
+checking for gethostname... yes
+checking for getmntinfo... no
+checking for getpwuid_r... yes
+checking for getrandom... yes
+checking for getrlimit... yes
+checking for getrusage... yes
+checking for jrand48... yes
+checking for keyctl... no
+checking for llistxattr... yes
+checking for llseek... no
+checking for lseek64... yes
+checking for mallinfo... yes
+checking for mallinfo2... yes
+checking for mbstowcs... yes
+checking for memalign... yes
+checking for mempcpy... yes
+checking for mmap... yes
+checking for msync... yes
+checking for nanosleep... yes
+checking for open64... yes
+checking for pathconf... yes
+checking for posix_fadvise... yes
+checking for posix_fadvise64... yes
+checking for posix_memalign... yes
+checking for prctl... yes
+checking for pread... yes
+checking for pwrite... yes
+checking for pread64... yes
+checking for pwrite64... yes
+checking for qsort_r... yes
+checking for secure_getenv... yes
+checking for setmntent... yes
+checking for setresgid... yes
+checking for setresuid... yes
+checking for snprintf... yes
+checking for srandom... yes
+checking for stpcpy... yes
+checking for strcasecmp... yes
+checking for strdup... yes
+checking for strnlen... yes
+checking for strptime... yes
+checking for strtoull... yes
+checking for sync_file_range... yes
+checking for sysconf... yes
+checking for usleep... yes
+checking for utime... yes
+checking for utimes... yes
+checking for valloc... yes
+checking for socket in -lsocket... no
+checking for magic_file in -lmagic... no
+Try testing for libarchive support (with dlopen) by default
+checking for libarchive... no
+checking for archive_read_new in -larchive... no
+checking for clock_gettime in -lrt... yes
+checking for fuse3... no
+checking for pthread.h... (cached) yes
+checking for fuse.h... no
+checking for optreset... no
+GL_THREADS_API:
+checking for sem_init... yes
+checking whether qsort_r is GNU version... yes
+checking whether qsort_r is BSD version... no
+checking for unified diff option... -u
+checking for mount 'nosuid' option... yes
+checking for mount 'nodev' option... yes
+On linux-gnu systems, root_prefix defaults to ''
+On linux-gnu systems, prefix defaults to /usr
+checking whether we can link with -static... yes
+checking for udev... yes
+checking for udev rules dir... /usr/lib/udev/rules.d
+checking for system crontab dir... /etc/cron.d
+checking for systemd... yes
+checking for systemd system unit dir... /usr/lib/systemd/system
+configure: creating ./config.status
+config.status: creating MCONFIG
+config.status: creating Makefile
+config.status: creating util/Makefile
+config.status: creating util/subst.conf
+config.status: creating util/gen-tarball
+config.status: creating util/install-symlink
+config.status: creating lib/et/Makefile
+config.status: creating lib/ss/Makefile
+config.status: creating lib/e2p/Makefile
+config.status: creating lib/ext2fs/Makefile
+config.status: creating lib/ext2fs/ext2_types.h
+config.status: creating lib/uuid/Makefile
+config.status: creating lib/uuid/uuid.pc
+config.status: creating lib/uuid/uuid_types.h
+config.status: creating lib/blkid/Makefile
+config.status: creating lib/blkid/blkid.pc
+config.status: creating lib/blkid/blkid_types.h
+config.status: creating lib/support/Makefile
+config.status: creating lib/ss/ss.pc
+config.status: creating lib/et/com_err.pc
+config.status: creating lib/e2p/e2p.pc
+config.status: creating lib/ext2fs/ext2fs.pc
+config.status: creating misc/Makefile
+config.status: creating ext2ed/Makefile
+config.status: creating e2fsck/Makefile
+config.status: creating debugfs/Makefile
+config.status: creating tests/Makefile
+config.status: creating tests/progs/Makefile
+config.status: creating tests/fuzz/Makefile
+config.status: creating resize/Makefile
+config.status: creating doc/Makefile
+config.status: creating po/Makefile.in
+config.status: creating scrub/Makefile
+config.status: creating lib/config.h
+config.status: executing po-directories commands
+config.status: creating po/POTFILES
+config.status: creating po/Makefile
+make[1]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+cd ./util ; make subst
+cd ./util ; make symlinks
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/util'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/util'
+	CREATE dirpaths.h
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/util/subst.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/util/symlinks.c
+	LD symlinks
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/util'
+	LD subst
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/util'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: 'util/subst.conf' is up to date.
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: 'lib/config.h' is up to date.
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+	SUBST lib/dirpaths.h
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+cd .; CONFIG_FILES=./lib/ext2fs/ext2_types.h ./config.status
+config.status: creating ./lib/ext2fs/ext2_types.h
+config.status: creating lib/config.h
+config.status: lib/config.h is unchanged
+config.status: executing po-directories commands
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+cd .; CONFIG_FILES=./lib/blkid/blkid_types.h ./config.status
+config.status: creating ./lib/blkid/blkid_types.h
+config.status: creating lib/config.h
+config.status: lib/config.h is unchanged
+config.status: executing po-directories commands
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+cd .; CONFIG_FILES=./lib/uuid/uuid_types.h ./config.status
+config.status: creating ./lib/uuid/uuid_types.h
+config.status: creating lib/config.h
+config.status: lib/config.h is unchanged
+config.status: executing po-directories commands
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/et'
+	SUBST compile_et
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/et'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/ext2fs'
+	SUBST ext2_err.et
+	COMPILE_ET ext2_err.et
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/ext2fs'
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/support'
+	COMPILE_ET prof_err.et
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/support'
+making all in lib/et
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/et'
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/et/error_message.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/et/et_name.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/et/init_et.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/et/com_err.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/et/com_right.c
+	GEN_LIB libcom_err.a
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/et'
+making all in lib/ss
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/ss'
+	SUBST mk_cmds
+	COMPILE_ET ss_err.et
+	MK_CMDS std_rqs.c
+	COMPILE_ET ss_err.et
+	CC ss_err.c
+	CC std_rqs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/invocation.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/help.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/execute_cmd.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/listen.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/parse.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/error.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/prompt.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/request_tbl.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/list_rqs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/pager.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/requests.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/data.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ss/get_readline.c
+	GEN_LIB libss.a
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/ss'
+making all in lib/e2p
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/e2p'
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/feature.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/fgetflags.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/fgetversion.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/fsetflags.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/fsetversion.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/getflags.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/getversion.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/hashstr.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/iod.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/ls.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/ljs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/mntopts.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/parse_num.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/pe.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/pf.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/ps.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/setflags.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/setversion.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/uuid.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/ostype.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/percent.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/crypto_mode.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/fgetproject.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/fsetproject.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/encoding.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/e2p/errcode.c
+	GEN_LIB libe2p.a
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/e2p'
+making all in lib/uuid
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/uuid'
+	CP uuid.h
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/clear.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/copy.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/compare.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/gen_uuid.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/isnull.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/pack.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/parse.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/unpack.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/unparse.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/uuid/uuid_time.c
+	GEN_LIB libuuid.a
+	CC tst_uuid.o
+	LD uuid_time
+	SUBST uuid.3
+	SUBST uuid_clear.3
+	SUBST uuid_compare.3
+	SUBST uuid_copy.3
+	SUBST uuid_generate.3
+	SUBST uuid_parse.3
+	SUBST uuid_is_null.3
+	SUBST uuid_time.3
+	SUBST uuid_unparse.3
+	LD tst_uuid
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/uuid'
+making all in lib/blkid
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/blkid'
+	CP blkid.h
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/cache.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/devname.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/dev.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/devno.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/getsize.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/llseek.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/probe.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/read.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/resolve.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/save.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/tag.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/blkid/version.c
+	GEN_LIB libblkid.a
+	SUBST libblkid.3
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/blkid'
+making all in lib/support
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/support'
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/cstring.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/mkquota.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/plausible.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/profile.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/parse_qtype.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/print_fs_flags.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/profile_helpers.c
+	CC prof_err.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/quotaio.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/quotaio_v2.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/quotaio_tree.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/dict.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/support/devname.c
+	GEN_LIB libsupport.a
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/support'
+making all in lib/ext2fs
+make[2]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/ext2fs'
+	CC gen_crc32ctable
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/bb_compat.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/inode_io.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/write_bb_file.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/test_io.c
+	CC ext2_err.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/alloc.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/alloc_sb.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/alloc_stats.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/alloc_tables.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/atexit.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/badblocks.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/bb_inode.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/bitmaps.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/bitops.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/blkmap64_ba.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/blkmap64_rb.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/blknum.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/block.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/bmap.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/check_desc.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/closefs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/crc16.c
+	GEN32CTABLE crc32c_table.h
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/csum.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/dblist.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/dblist_dir.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/dirblock.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/dirhash.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/dir_iterate.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/expanddir.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/ext_attr.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/extent.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/fallocate.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/fileio.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/finddev.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/flushb.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/freefs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/gen_bitmap.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/gen_bitmap64.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/get_num_dirs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/get_pathname.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/getenv.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/getsize.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/getsectsize.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/hashmap.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/i_block.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/icount.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/ind_block.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/initialize.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/inline.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/inline_data.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/inode.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/io_manager.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/ismounted.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/link.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/llseek.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/lookup.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/mkdir.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/mkjournal.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/mmp.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/namei.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/native.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/newdir.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/nls_utf8.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/openfs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/orphan.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/progress.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/punch.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/qcow2.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/read_bb.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/read_bb_file.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/res_gdt.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/rw_bitmaps.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/sha512.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/swapfs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/symlink.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/undo_io.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/unix_io.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/sparse_io.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/unlink.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/valid_blk.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/version.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/rbtree.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/lib/ext2fs/crc32c.c
+	GEN_LIB libext2fs.a
+make[2]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/lib/ext2fs'
+make[1]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build'
+make[1]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/misc'
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/mke2fs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/util.c
+if test -f /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/mke2fs.conf.custom.in ; then \
+	cp /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/mke2fs.conf.custom.in mke2fs.conf; \
+else \
+	cp /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/mke2fs.conf.in mke2fs.conf; \
+fi
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/mk_hugefiles.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/create_inode.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/misc/create_inode_libarchive.c
+	PROFILE_TO_C mke2fs.conf
+	CC default_profile.c
+	LD mke2fs
+make[1]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/misc'
+make[1]: Entering directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/debugfs'
+	MK_CMDS debug_cmds.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/debugfs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/util.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/ncheck.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/icheck.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/ls.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/lsdel.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/dump.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/set_fields.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/logdump.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/htree.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/unused.c
+	CC e2freefrag.o
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/filefrag.c
+	MK_CMDS extent_cmds.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/extent_inode.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/zap.c
+	CC create_inode.o
+	CC create_inode_libarchive.o
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/quota.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/xattrs.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/journal.c
+	CC revoke.o
+	CC recovery.o
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/do_journal.c
+	CC /home/runner/work/govm/govm/boxlite-src/boxlite/deps/e2fsprogs-sys/vendor/e2fsprogs/debugfs/do_orphan.c
+	CC debug_cmds.c
+	CC extent_cmds.c
+	LD debugfs
+make[1]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/debugfs'
+cargo:warning=e2fsprogs build complete
+cargo:mke2fs_BOXLITE_DEP=/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/misc/mke2fs
+cargo:debugfs_BOXLITE_DEP=/home/runner/work/govm/govm/boxlite-src/target/release/build/e2fsprogs-sys-39a14d35462e34e4/out/e2fsprogs-build/debugfs/debugfs

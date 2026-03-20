@@ -1,0 +1,4 @@
+cargo:rustc-check-cfg=cfg(nc_has_asm)
+cargo:rustc-cfg=nc_has_asm
+cargo:rustc-check-cfg=cfg(nc_has_sa_restorer)
+cargo:rustc-cfg=nc_has_sa_restorer

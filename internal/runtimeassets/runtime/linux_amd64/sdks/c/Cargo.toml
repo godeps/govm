@@ -1,0 +1,21 @@
+[package]
+name = "boxlite-c"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+publish = false
+description = "C SDK for BoxLite"
+
+[lib]
+name = "boxlite"
+crate-type = ["cdylib", "staticlib"]
+
+[features]
+default = []
+
+[dependencies]
+boxlite-ffi = { path = "../../ffi" }
+
+[build-dependencies]
+cbindgen = "0.29"

@@ -1,0 +1,9 @@
+/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/target/x86_64-unknown-linux-gnu/release/deps/zstd_sys-b7aebeebdeefae13.d: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zstd.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zdict.rs
+
+/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/target/x86_64-unknown-linux-gnu/release/deps/libzstd_sys-b7aebeebdeefae13.rlib: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zstd.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zdict.rs
+
+/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun/target/x86_64-unknown-linux-gnu/release/deps/libzstd_sys-b7aebeebdeefae13.rmeta: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zstd.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zdict.rs
+
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/lib.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zstd.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zstd-sys-2.0.15+zstd.1.5.7/src/bindings_zdict.rs:

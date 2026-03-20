@@ -1,0 +1,10 @@
+/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/deps/safe_path-dba11a7a26586e48.d: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/pinned_path_buf.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_dir_builder.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_path_resolver.rs
+
+/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/deps/libsafe_path-dba11a7a26586e48.rlib: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/pinned_path_buf.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_dir_builder.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_path_resolver.rs
+
+/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-musl/release/deps/libsafe_path-dba11a7a26586e48.rmeta: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/pinned_path_buf.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_dir_builder.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_path_resolver.rs
+
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/lib.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/pinned_path_buf.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_dir_builder.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/safe-path-0.1.0/src/scoped_path_resolver.rs:

@@ -1,0 +1,31 @@
+cargo:rerun-if-changed=build.rs
+cargo:rerun-if-env-changed=BOXLITE_DEPS_STUB
+cargo:warning=Compiling seccomp filter: resources/seccomp/x86_64-unknown-linux-gnu.json -> /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/boxlite-5e55e72117f41a52/out/seccomp_filter.bpf
+cargo:warning=Successfully compiled seccomp filter (8866 bytes)
+cargo:rerun-if-changed=resources/seccomp/x86_64-unknown-linux-gnu.json
+cargo:rerun-if-changed=resources/seccomp/
+cargo:warning=Found dependency: bwrap at /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/bubblewrap-sys-523d1a486976156b/out/bubblewrap-build/bwrap
+cargo:warning=Bundled: bwrap
+cargo:warning=Found dependency: debugfs at /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/e2fsprogs-sys-da0015b43ed4b0fc/out/e2fsprogs-build/debugfs/debugfs
+cargo:warning=Bundled: debugfs
+cargo:warning=Found dependency: mke2fs at /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/e2fsprogs-sys-da0015b43ed4b0fc/out/e2fsprogs-build/misc/mke2fs
+cargo:warning=Bundled: mke2fs
+cargo:warning=Found dependency: libgvproxy at /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libgvproxy-sys-54682b07ae7e151d/out
+cargo:warning=Found dependency: libkrunfw at /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrunfw/lib64
+cargo:warning=Bundled library: libkrunfw.so.5
+cargo:warning=Found dependency: libkrun at /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrun/lib64
+cargo:warning=Bundled: bwrap, debugfs, mke2fs, libgvproxy, libkrunfw, libkrun
+cargo:rustc-link-search=native=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/boxlite-5e55e72117f41a52/out/runtime
+cargo:runtime_dir=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/boxlite-5e55e72117f41a52/out/runtime
+cargo:warning=boxlite-guest not found, skipping compile-time hash
+cargo:warning=boxlite-shim not found, skipping embed
+cargo:warning=boxlite-guest not found, skipping embed
+cargo:rerun-if-changed=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/boxlite-5e55e72117f41a52/out/runtime/bwrap
+cargo:rerun-if-changed=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/boxlite-5e55e72117f41a52/out/runtime/debugfs
+cargo:rerun-if-changed=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/boxlite-5e55e72117f41a52/out/runtime/libkrunfw.so.5
+cargo:rerun-if-changed=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/boxlite-5e55e72117f41a52/out/runtime/mke2fs
+cargo:rustc-env=BOXLITE_MANIFEST_HASH=1c03404e3e80
+cargo:rustc-env=BOXLITE_BUILD_PROFILE=release
+cargo:warning=Embedded manifest hash: 1c03404e3e80
+cargo:warning=Embedded runtime: 4 files, 23.5 MB total
+cargo:rustc-link-arg=-Wl,-rpath,$ORIGIN

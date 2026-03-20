@@ -1,0 +1,93 @@
+//! Boxlite runtime library.
+//!
+//! This crate provides the host-side API for managing Boxlite sandboxes.
+
+use std::sync::OnceLock;
+use tracing_subscriber::EnvFilter;
+
+// Global guard for tracing-appender to keep the writer thread alive
+static LOG_GUARD: OnceLock<tracing_appender::non_blocking::WorkerGuard> = OnceLock::new();
+
+pub mod jailer;
+pub mod litebox;
+pub mod lock;
+pub mod metrics;
+pub mod net;
+pub mod pipeline;
+pub mod runtime;
+pub mod util;
+pub mod vmm;
+
+mod db;
+mod disk;
+mod fs;
+mod images;
+mod portal;
+#[cfg(feature = "rest")]
+mod rest;
+mod rootfs;
+mod volumes;
+
+pub use litebox::LiteBox;
+pub use portal::GuestSession;
+pub use runtime::{BoxliteRuntime, ImageHandle};
+
+pub use boxlite_shared::errors::{BoxliteError, BoxliteResult};
+pub use disk::DiskInfo;
+pub use litebox::SnapshotHandle;
+pub use litebox::archive::ArchiveManifest;
+pub use litebox::snapshot_mgr::SnapshotInfo;
+pub use litebox::{
+    BoxCommand, CopyOptions, ExecResult, ExecStderr, ExecStdin, ExecStdout, Execution, ExecutionId,
+    HealthState, HealthStatus,
+};
+pub use metrics::{BoxMetrics, RuntimeMetrics};
+pub use runtime::advanced_options::{
+    AdvancedBoxOptions, HealthCheckOptions, ResourceLimits, SecurityOptions,
+};
+use runtime::layout::FilesystemLayout;
+pub use runtime::options::{
+    BoxArchive, BoxOptions, BoxliteOptions, CloneOptions, ExportOptions, RootfsSpec,
+    SnapshotOptions,
+};
+/// Boxlite library version (from CARGO_PKG_VERSION at compile time).
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+pub use runtime::id::{BoxID, BoxIDMint};
+pub use runtime::types::ContainerID;
+pub use runtime::types::{BoxInfo, BoxState, BoxStateInfo, BoxStatus};
+
+#[cfg(feature = "rest")]
+pub use rest::options::BoxliteRestOptions;
+
+/// Initialize tracing for Boxlite using the provided filesystem layout.
+///
+/// Logs are written to `<layout.home_dir()>/logs/boxlite.log` with daily rotation.
+/// Uses the `RUST_LOG` environment variable for filtering (defaults to `info`).
+/// Idempotent: subsequent calls return immediately once initialized.
+pub fn init_logging_for(layout: &FilesystemLayout) -> BoxliteResult<()> {
+    let logs_dir = layout.logs_dir();
+    std::fs::create_dir_all(&logs_dir).map_err(|e| {
+        BoxliteError::Storage(format!(
+            "Failed to create logs directory {}: {}",
+            logs_dir.display(),
+            e
+        ))
+    })?;
+
+    let _ = LOG_GUARD.get_or_init(|| {
+        let file_appender = tracing_appender::rolling::daily(logs_dir, "boxlite.log");
+        let (non_blocking, guard) = tracing_appender::non_blocking(file_appender);
+
+        let env_filter = EnvFilter::try_from_default_env()
+            .or_else(|_| EnvFilter::try_new("info"))
+            .unwrap_or_else(|_| EnvFilter::new("info"));
+
+        // If global default subscriber is already set, this will return an error.
+        // We ignore it to avoid interfering with host-configured tracing.
+        util::register_to_tracing(non_blocking, env_filter);
+
+        guard
+    });
+
+    Ok(())
+}

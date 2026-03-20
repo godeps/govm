@@ -1,0 +1,19 @@
+cargo:rerun-if-changed=vendor/libkrun
+cargo:rerun-if-changed=vendor/libkrunfw
+cargo:rerun-if-env-changed=BOXLITE_DEPS_STUB
+cargo:warning=Building libkrun-sys for Linux (static, pre-compiled libkrunfw)
+cargo:warning=Downloading https://github.com/boxlite-ai/libkrunfw/releases/download/v5.1.0/libkrunfw-x86_64.tgz...
+cargo:warning=SHA256 verified: faca64a3581ce281498b8ae7eccc6bd0da99b167984f9ee39c47754531d4b37d
+cargo:warning=Extracted libkrunfw.so to /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrunfw/lib64
+cargo:warning=Building init binary...
+make[1]: Entering directory '/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun'
+cc -O2 -static -Wall  -o init/init init/init.c 
+make[1]: Leaving directory '/home/runner/work/govm/govm/boxlite-src/boxlite/deps/libkrun-sys/vendor/libkrun'
+cargo:warning=Building libkrun as static library...
+cargo:warning=Built static libkrun at /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrun/lib64/libkrun.a
+cargo:rustc-link-search=native=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrun/lib64
+cargo:rustc-link-lib=static=krun
+cargo:LIBKRUN_BOXLITE_DEP=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrun/lib64
+cargo:LIBKRUNFW_BOXLITE_DEP=/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrunfw/lib64
+cargo:warning=Renamed libkrunfw.so.5.1.0 to libkrunfw.so.5
+cargo:warning=Fixing libkrunfw.so.5 in /home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/libkrun-sys-bb8a4df3f8d257f1/out/libkrunfw/lib64/libkrunfw.so.5

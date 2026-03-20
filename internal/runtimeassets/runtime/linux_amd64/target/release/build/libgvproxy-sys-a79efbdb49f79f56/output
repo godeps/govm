@@ -1,0 +1,10 @@
+cargo:rerun-if-changed=gvproxy-bridge/main.go
+cargo:rerun-if-changed=gvproxy-bridge/stats.go
+cargo:rerun-if-changed=gvproxy-bridge/go.mod
+cargo:rerun-if-env-changed=BOXLITE_DEPS_STUB
+cargo:warning=Building libgvproxy from Go sources...
+cargo:warning=Successfully built libgvproxy
+cargo:rustc-link-search=native=/home/runner/work/govm/govm/boxlite-src/target/release/build/libgvproxy-sys-a79efbdb49f79f56/out
+cargo:rustc-link-lib=static=gvproxy
+cargo:rustc-link-lib=resolv
+cargo:LIBGVPROXY_BOXLITE_DEP=/home/runner/work/govm/govm/boxlite-src/target/release/build/libgvproxy-sys-a79efbdb49f79f56/out

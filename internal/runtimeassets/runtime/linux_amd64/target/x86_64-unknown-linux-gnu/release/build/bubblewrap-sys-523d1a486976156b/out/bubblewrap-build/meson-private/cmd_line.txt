@@ -1,0 +1,9 @@
+[options]
+selinux = disabled
+man = disabled
+tests = false
+bash_completion = disabled
+zsh_completion = disabled
+
+[properties]
+

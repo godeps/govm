@@ -1,0 +1,26 @@
+[
+  {
+    "directory": "/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/bubblewrap-sys-523d1a486976156b/out/bubblewrap-build",
+    "command": "cc -Ibwrap.p -I. -I../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -O0 -g -D_GNU_SOURCE -Werror=shadow -Werror=empty-body -Werror=strict-prototypes -Werror=missing-prototypes -Werror=implicit-function-declaration -Werror=pointer-arith -Werror=init-self -Werror=missing-declarations -Werror=return-type -Werror=overflow -Werror=int-conversion -Werror=incompatible-pointer-types -Werror=misleading-indentation -Werror=missing-include-dirs -Werror=aggregate-return -Werror=switch-default -Wswitch-enum -Wno-missing-field-initializers -Wno-error=missing-field-initializers -Werror=format=2 -Werror=format-security -Werror=format-nonliteral -MD -MQ bwrap.p/bubblewrap.c.o -MF bwrap.p/bubblewrap.c.o.d -o bwrap.p/bubblewrap.c.o -c ../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/bubblewrap.c",
+    "file": "../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/bubblewrap.c",
+    "output": "bwrap.p/bubblewrap.c.o"
+  },
+  {
+    "directory": "/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/bubblewrap-sys-523d1a486976156b/out/bubblewrap-build",
+    "command": "cc -Ibwrap.p -I. -I../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -O0 -g -D_GNU_SOURCE -Werror=shadow -Werror=empty-body -Werror=strict-prototypes -Werror=missing-prototypes -Werror=implicit-function-declaration -Werror=pointer-arith -Werror=init-self -Werror=missing-declarations -Werror=return-type -Werror=overflow -Werror=int-conversion -Werror=incompatible-pointer-types -Werror=misleading-indentation -Werror=missing-include-dirs -Werror=aggregate-return -Werror=switch-default -Wswitch-enum -Wno-missing-field-initializers -Wno-error=missing-field-initializers -Werror=format=2 -Werror=format-security -Werror=format-nonliteral -MD -MQ bwrap.p/bind-mount.c.o -MF bwrap.p/bind-mount.c.o.d -o bwrap.p/bind-mount.c.o -c ../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/bind-mount.c",
+    "file": "../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/bind-mount.c",
+    "output": "bwrap.p/bind-mount.c.o"
+  },
+  {
+    "directory": "/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/bubblewrap-sys-523d1a486976156b/out/bubblewrap-build",
+    "command": "cc -Ibwrap.p -I. -I../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -O0 -g -D_GNU_SOURCE -Werror=shadow -Werror=empty-body -Werror=strict-prototypes -Werror=missing-prototypes -Werror=implicit-function-declaration -Werror=pointer-arith -Werror=init-self -Werror=missing-declarations -Werror=return-type -Werror=overflow -Werror=int-conversion -Werror=incompatible-pointer-types -Werror=misleading-indentation -Werror=missing-include-dirs -Werror=aggregate-return -Werror=switch-default -Wswitch-enum -Wno-missing-field-initializers -Wno-error=missing-field-initializers -Werror=format=2 -Werror=format-security -Werror=format-nonliteral -MD -MQ bwrap.p/network.c.o -MF bwrap.p/network.c.o.d -o bwrap.p/network.c.o -c ../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/network.c",
+    "file": "../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/network.c",
+    "output": "bwrap.p/network.c.o"
+  },
+  {
+    "directory": "/home/runner/work/govm/govm/boxlite-src/target/x86_64-unknown-linux-gnu/release/build/bubblewrap-sys-523d1a486976156b/out/bubblewrap-build",
+    "command": "cc -Ibwrap.p -I. -I../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -O0 -g -D_GNU_SOURCE -Werror=shadow -Werror=empty-body -Werror=strict-prototypes -Werror=missing-prototypes -Werror=implicit-function-declaration -Werror=pointer-arith -Werror=init-self -Werror=missing-declarations -Werror=return-type -Werror=overflow -Werror=int-conversion -Werror=incompatible-pointer-types -Werror=misleading-indentation -Werror=missing-include-dirs -Werror=aggregate-return -Werror=switch-default -Wswitch-enum -Wno-missing-field-initializers -Wno-error=missing-field-initializers -Werror=format=2 -Werror=format-security -Werror=format-nonliteral -MD -MQ bwrap.p/utils.c.o -MF bwrap.p/utils.c.o.d -o bwrap.p/utils.c.o -c ../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/utils.c",
+    "file": "../../../../../../../boxlite/deps/bubblewrap-sys/vendor/bubblewrap/utils.c",
+    "output": "bwrap.p/utils.c.o"
+  }
+]

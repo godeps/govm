@@ -1,0 +1,33 @@
+#![deny(clippy::all)]
+
+//! BoxLite Node.js bindings.
+//!
+//! This crate provides napi-rs bindings for BoxLite, allowing JavaScript/TypeScript
+//! applications to create and manage isolated VM-based containers.
+
+mod advanced_options;
+mod box_handle;
+mod copy;
+mod exec;
+mod info;
+mod metrics;
+mod options;
+mod runtime;
+mod snapshot_options;
+mod snapshots;
+mod util;
+
+// Re-export all public types
+pub use advanced_options::JsSecurityOptions;
+pub use box_handle::JsBox;
+pub use copy::JsCopyOptions;
+pub use exec::{JsExecResult, JsExecStderr, JsExecStdin, JsExecStdout, JsExecution};
+pub use info::{JsBoxInfo, JsBoxStateInfo, JsHealthState, JsHealthStatus};
+pub use metrics::{JsBoxMetrics, JsRuntimeMetrics};
+pub use options::{
+    JsBoxOptions, JsBoxliteRestOptions, JsEnvVar, JsHealthCheckOptions, JsOptions, JsPortSpec,
+    JsVolumeSpec,
+};
+pub use runtime::JsBoxlite; // re-export for dist bundling
+pub use snapshot_options::{JsCloneOptions, JsExportOptions, JsSnapshotOptions};
+pub use snapshots::{JsSnapshotHandle, JsSnapshotInfo};
