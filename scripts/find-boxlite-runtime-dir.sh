@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TARGET_ROOT="${1:-}"
+
+if [[ -z "$TARGET_ROOT" ]]; then
+  echo "usage: $0 <boxlite-target-dir>" >&2
+  exit 1
+fi
+
+if [[ ! -d "$TARGET_ROOT" ]]; then
+  echo "missing target dir: $TARGET_ROOT" >&2
+  exit 1
+fi
+
+mapfile -t candidates < <(find "$TARGET_ROOT" -path '*/out/runtime' -type d | sort)
+
+if [[ ${#candidates[@]} -eq 0 ]]; then
+  echo "runtime dir not found under $TARGET_ROOT" >&2
+  exit 1
+fi
+
+for runtime_dir in "${candidates[@]}"; do
+  if [[ -f "$runtime_dir/boxlite-shim" && -f "$runtime_dir/boxlite-guest" ]]; then
+    echo "$runtime_dir"
+    exit 0
+  fi
+done
+
+echo "no runtime dir with boxlite-shim and boxlite-guest found under $TARGET_ROOT" >&2
+exit 1

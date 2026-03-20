@@ -54,11 +54,7 @@ jobs:
         working-directory: boxlite-src
         run: |
           make setup:build runtime
-          runtime_dir=$(find "$PWD/target" -path '*/out/runtime' -type d | sort | tail -1)
-          if [[ -z "$runtime_dir" ]]; then
-            echo "runtime dir not found under boxlite target/" >&2
-            exit 1
-          fi
+          runtime_dir=$("$GITHUB_WORKSPACE/scripts/find-boxlite-runtime-dir.sh" "$PWD/target")
           echo "BOXLITE_RUNTIME_DIR=$runtime_dir" >> "$GITHUB_ENV"
 
       - name: Build govm bridge against local boxlite checkout
@@ -126,11 +122,7 @@ jobs:
         working-directory: boxlite-src
         run: |
           make setup:build runtime
-          runtime_dir=$(find "$PWD/target" -path '*/out/runtime' -type d | sort | tail -1)
-          if [[ -z "$runtime_dir" ]]; then
-            echo "runtime dir not found under boxlite target/" >&2
-            exit 1
-          fi
+          runtime_dir=$("$GITHUB_WORKSPACE/scripts/find-boxlite-runtime-dir.sh" "$PWD/target")
           echo "BOXLITE_RUNTIME_DIR=$runtime_dir" >> "$GITHUB_ENV"
 
       - name: Build govm bridge against local boxlite checkout
@@ -198,11 +190,7 @@ jobs:
         working-directory: boxlite-src
         run: |
           make setup:build runtime
-          runtime_dir=$(find "$PWD/target" -path '*/out/runtime' -type d | sort | tail -1)
-          if [[ -z "$runtime_dir" ]]; then
-            echo "runtime dir not found under boxlite target/" >&2
-            exit 1
-          fi
+          runtime_dir=$("$GITHUB_WORKSPACE/scripts/find-boxlite-runtime-dir.sh" "$PWD/target")
           echo "BOXLITE_RUNTIME_DIR=$runtime_dir" >> "$GITHUB_ENV"
 
       - name: Build govm bridge against local boxlite checkout
@@ -249,7 +237,7 @@ jobs:
       - name: Download staged assets
         uses: actions/download-artifact@v4
         with:
-          path: .
+          path: internal
           pattern: platform-assets-*
           merge-multiple: true
 
